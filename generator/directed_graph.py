@@ -36,7 +36,7 @@ class DirectedGraph:
         
         node_list= f"List of nodes in graph: "
         cnt = 1
-        for node in self.graph.adj:
+        for node in sorted(self.graph.adj):
             if cnt == len(self.graph.adj):
                 node_list += node + '\n'
             else:
@@ -44,7 +44,7 @@ class DirectedGraph:
                 cnt += 1
         
         edge_list = f"Edge list of graph: \n"
-        for u, v in self.graph.edges(data=False):
+        for u, v in sorted(self.graph.edges(data=False)):
             edge_list += '(' + u + ', ' + v + ')\n'
         
         degree_list = f"List of nodes with respective degrees:\n"
