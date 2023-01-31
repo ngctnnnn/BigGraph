@@ -24,11 +24,11 @@ G.visualization(scale_coefficient=3.5, save_path="visualization/example2_graph.p
 Subgraph
 """
 print(StringColor.CYAN+ f"[Result] Properties of sub-graph" + StringColor.END) 
-sub_graph = Graph(copy_graph=G.get_subgraph(['FOOD', 'FOOL', 'POLL', 'SAGE', 'PALE', 'PALM']))
+sub_graph = Graph(copy_graph=G.getSubgraph(['FOOD', 'FOOL', 'POLL', 'SAGE', 'PALE', 'PALM']))
 print(sub_graph)
 sub_graph.visualization(scale_coefficient=3.5, save_path='visualization/sub_graph_example2.png', verbose=0, figsize_h=12, figsize_w=10)
 
 """
 Get adjacency list of graph
 """
-print(G.get_adjacency_list())
+print(G.getAdjacencyList())
