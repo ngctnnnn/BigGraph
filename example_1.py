@@ -22,6 +22,6 @@ G.visualization(save_path="visualization/example1_graph.png", verbose=0, figsize
 Subgraph
 """
 print(StringColor.CYAN+ f"[Result] Properties of sub-graph" + StringColor.END) 
-sub_graph = Graph(copy_graph=G.get_subgraph(['19', '192', '700', '1330', '30', '1412', '3352', '274', '5', '2']))
+sub_graph = Graph(copy_graph=G.getSubgraph(['19', '192', '700', '1330', '30', '1412', '3352', '274', '5', '2']))
 # print(sub_graph)
 sub_graph.visualization(save_path='visualization/sub_graph_example1.png', verbose=0, figsize_h=16, figsize_w=10)
