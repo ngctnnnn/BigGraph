@@ -50,7 +50,7 @@ class DirectedGraph:
             edge_list += '(' + u + ', ' + v + ')\n'
         
         degree_list = f"List of nodes with respective degrees:\n"
-        for node in self.graph.adj:
+        for node in sorted_graph_adj:
             degree_list += f"Node {node} has a degree of {self.getNodeDegree(node)}\n" 
         
         return num_nodes + num_edges + num_selfloops + node_list + edge_list + degree_list
