@@ -12,6 +12,8 @@
 #### 3. [Các ví dụ về use cases](#3-các-ví-dụ-về-use-cases)
 #### 4. [Tài liệu tham khảo](#4-tài-liệu-tham-khảo)
 
+---
+
 ### 1. Cài đặt
 ```bash
 conda env create -f environment.yml
