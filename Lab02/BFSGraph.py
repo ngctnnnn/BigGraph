@@ -1,4 +1,4 @@
-from VertexGraph import Graph, Vertex
+from Graph import Graph
 from Queue import Queue
 
 def buildGraph(wordFile):

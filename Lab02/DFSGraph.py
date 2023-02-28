@@ -1,4 +1,4 @@
-from VertexGraph import Graph
+from Graph import Graph
 
 
 class DFSGraph(Graph):

@@ -1,94 +1,77 @@
 import sys
 
-
-class Graph:
-    def __init__(self):
-        self.vertList = {}
-        self.numVertices = 0
-
-    def addVertex(self, key):
-        self.numVertices = self.numVertices + 1
-        newVertex = Vertex(key)
-        self.vertList[key] = newVertex
-        return newVertex
-
-    def getVertex(self, n):
-        if n in self.vertList:
-            return self.vertList[n]
-        else:
-            return None
-
-    def __contains__(self, n):
-        return n in self.vertList
-
-    def addEdge(self, f, t, weight=0):
-        if f not in self.vertList:
-            nv = self.addVertex(f)
-        if t not in self.vertList:
-            nv = self.addVertex(t)
-        self.vertList[f].addNeighbor(self.vertList[t], weight)
-
-    def getVertices(self):
-        return self.vertList.keys()
-
-    def __iter__(self):
-        return iter(self.vertList.values())
-
-    def __str__(self):
-        return str([str(x) for x in self.vertList])
-
-
-class Vertex:
-    def __init__(self, num):
-        self.id = num
-        self.connectedTo = {}
+class Vertex(object):
+    """Describes a vertex object in terms of a "key" and a
+    dictionary that indicates edges to neighboring vertices with
+    a specified weight.
+    """
+    def __init__(self, key):
+        """Constructs a vertex with a key value (no payload in
+        this example), and an empty dictionary in which we'll
+        store other vertices to which this vertex is connected.
+        """
+        self.id = key
+        self.connectedTo = {}   # empty dictionary for vertices
         self.color = 'white'
-        self.dist = sys.maxsize
-        self.pred = None
-        self.disc = 0
-        self.fin = 0
+        self.distance = 0
+        self.predecessor = None
+        self.discovery = 0           # discovery time
+        self.finish = 0            # finish time
 
-    def addNeighbor(self, nbr, weight=0):
-        self.connectedTo[nbr] = weight
+    def addNeighbor(self, neighbor, weight=0):
+        """Creates a new vertex entry in the dictionary, to which this
+        vertex is connected by an edge. If a weight is not indicated,
+        default weight is 0.
+        """
+        self.connectedTo[neighbor] = weight
 
     def setColor(self, color):
         self.color = color
-
-    def setDistance(self, d):
-        self.dist = d
-
-    def setPred(self, p):
-        self.pred = p
-
-    def setDiscovery(self, dtime):
-        self.disc = dtime
-
-    def setFinish(self, ftime):
-        self.fin = ftime
-
-    def getFinish(self):
-        return self.fin
-
-    def getDiscovery(self):
-        return self.disc
-
-    def getPred(self):
-        return self.pred
-
-    def getDistance(self):
-        return self.dist
-
+    
     def getColor(self):
         return self.color
 
+    def setDistance(self, distance):
+        self.distance = distance
+
+    def getDistance(self):
+        return self.distance
+
+    def setPred(self, predecessor):
+        self.predecessor = predecessor
+
+    def getPred(self):
+        return self.predecessor
+
+    def setDiscovery(self, dtime):
+        self.discovery = dtime
+
+    def getDiscovery(self):
+        return self.discovery
+
+    def setFinish(self, ftime):
+        self.finish = ftime
+
+    def getFinish(self):
+        return self.finish
+
     def getConnections(self):
+        """Returns the id values of the vertices we're connected to
+        """
         return self.connectedTo.keys()
-
-    def getWeight(self, nbr):
-        return self.connectedTo[nbr]
-
-    def __str__(self):
-        return str(self.id) + " :color " + self.color + " :disc " + str(self.disc) + " :fin " + str(self.fin) + " :dist " + str(self.dist) + " :pred \n\t[" + str(self.pred) + "]\n"
 
     def getId(self):
         return self.id
+
+    def getWeight(self, neighbor):
+        return self.connectedTo[neighbor]
+
+    def __repr__(self):
+        """Returns a representation of the graph, suitable for printing."""
+        return "Vertex[id=" + str(self.id) + \
+                     ',color=' + self.color + \
+                     ",disc=" + str(self.discovery) + \
+                     ",fin=" + str(self.finish) + \
+                     ",dist=" + str(self.distance) + \
+                     ",pred\t[" + str(self.predecessor) + \
+                     "],neighbors=" + str([e.id for e in self.connectedTo]) + "]\n"
